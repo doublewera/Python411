@@ -79,3 +79,21 @@ for symb in result:
     else:
         winner[how_many] = [symb]
 print(winner)
+
+# теперь надо его напечать не как попало, а по убыванию
+# {
+#   3: ['#', 'п'],
+#  15: [' '],
+#   1: ['Ч', '(', ')', ':', 'у', '.', 'С', 'ч', 'я', 'ж', '?'],
+# ...
+#   }
+# Как упорядочить ключи? Можно вручную циклами
+# Можно вызвать функцию sorted
+
+last_result = []
+for freq in sorted(list(winner.keys())): #, reverse=True):
+    print(freq, winner[freq])
+    last_result = [(freq, winner[freq])] + last_result
+    
+for elems in last_result:
+    print(elems)
