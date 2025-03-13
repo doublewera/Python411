@@ -1,3 +1,4 @@
+/* Позволяет создать случайное число в заданном интервале */
 function randint(a, b) {
     return a + Math.round(
         Math.random() * (b - a)
@@ -18,15 +19,16 @@ var result = '';
 function save(filename, data) {
     const blob = new Blob([data], {type: 'text/csv'});
     if(window.navigator.msSaveOrOpenBlob) {
+        console.log('я тут');
         window.navigator.msSaveBlob(blob, filename);
-    }
-    else{
-        const elem = window.document.createElement('a');
+    } else {
+        const elem = document.createElement('a');
         elem.href = window.URL.createObjectURL(blob);
-        elem.download = filename;        
+        elem.download = filename;
+        elem.innerHTML = 'Meeew!'; 
         document.body.appendChild(elem);
         elem.click();        
-        document.body.removeChild(elem);
+        //document.body.removeChild(elem);
     }
 }
 
