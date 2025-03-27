@@ -10,6 +10,15 @@ class Task:  # Класс для хранения информации о зад
     def later(self):  # Функция, которая меняет дедлайн
         self.deadline += timedelta(3)
 
+    def __str__(self):
+        # начинается и заканчивается двумя подчеркиваниями
+        # называется __str__
+        # мы не вызываем ее по имени
+        # у нее один параметр - self
+        # возвращает строку
+        return 'Надо ' + self.description + ' к ' + self.deadline.strftime(
+            '%d-%B-%Y')
+
 dress = Task('Сшить джинсовое платье из обрезков')
 # self передается по умолчанию сам!
 print('Что сделать: ', dress.description)
@@ -20,4 +29,7 @@ print('Сделано? ', dress.done)
 dress.later()
 # self передается по умолчанию сам!
 print('К какому сроку? ', dress.deadline)
-exit(0)
+
+print(dress)
+dt = datetime.now()
+print(dt)
