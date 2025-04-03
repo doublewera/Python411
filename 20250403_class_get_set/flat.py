@@ -13,6 +13,11 @@ class Room:
         self.__length = l
         self.__height = h
 
+    @property
+    def length(self):
+        return self.__length
+    
+    @length.setter
     def set_length(self, new_length):
         # Сеттер позволяет дополнительно контролировать вводимые данные
         if isinstance(new_length, float) or isinstance(new_length, int):
@@ -33,3 +38,4 @@ r.set_length(7.5)
 print(r)
 print('Площадь комнаты: ', r.area())
 r.set_length("Очень длинная")
+r.length = 
