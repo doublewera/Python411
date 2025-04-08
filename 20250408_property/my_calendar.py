@@ -14,10 +14,6 @@ class MyCalendar:
     def year(self):
         return self.__year
     
-    @property
-    def day(self):
-        return self.__day
-    
         # Функция, не меняющая поля класса!
     def days_in_month(self, month_number):  # 1..12
         if month_number in [4, 6, 9, 11]:
@@ -30,8 +26,16 @@ class MyCalendar:
             # Невисокосный Февраль
             return 28
         return 31
-
-    def set_day(self, new_day):
+    
+    @property
+    def day(self):
+        return self.__day
+    
+    # Декоратор сеттера - теперь можно "присваивать" дню значения,
+    # но ПОД КОНТРОЛЕМ этой функции! Т.е. мы переопределили
+    # оператор присваивания для данного поля!
+    @day.setter
+    def day(self, new_day):
         if isinstance(new_day, int):
             # Убедились, что перед нами - целое число,
             if 0 < new_day <= self.days_in_month(self.__month):
@@ -44,7 +48,10 @@ class MyCalendar:
             print('Неверно, день должен быть числом, а не %s!' % new_day)
 
 mc = MyCalendar(2025, 7, 29)
-mc.set_day(54)
-mc.set_day('My birthday')
-mc.set_day(2)
+#mc.set_day(54)
+mc.day = 54
+#mc.set_day('My birthday')
+mc.day = 'Моё Деньрожденьё'
+#mc.set_day(2)
+mc.day = 2
 print(mc)
