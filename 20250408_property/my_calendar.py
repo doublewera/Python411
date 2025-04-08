@@ -43,7 +43,7 @@ class MyCalendar:
         else:
             print('Неверно, день должен быть числом, а не %s!' % new_day)
 
-mc = MyCalendar(2025, 6, 29)
+mc = MyCalendar(2025, 7, 29)
 mc.set_day(54)
 mc.set_day('My birthday')
 mc.set_day(2)
