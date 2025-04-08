@@ -48,19 +48,24 @@ class Calendar:
         ]
         for month_number, month_name in enumerate(names):
             # enumerate возвращает пары "номер" - "элемент"
-            if (month_number + 1) in [4, 6, 9, 11]:
-                # Апрель, Июнь, Сентябрь, Ноябрь
-                months.append(Month(month_name, 30))
-            elif month_number + 1 == 2:
-                if self.__year.is_leap_year():
-                    # Високосный Февраль
-                    months.append(Month(month_name, 29))
-                else:
-                    # Невисокосный Февраль
-                    months.append(Month(month_name, 28))
-            else:
-                months.append(Month(month_name, 31))
+            months.append(
+                Month(
+                    month_name,
+                    self.days_in_month(month_number + 1)))
         return months
+    
+    # Функция, не меняющая поля класса!
+    def days_in_month(self, month_number):  # 1..12
+        if month_number in [4, 6, 9, 11]:
+            # Апрель, Июнь, Сентябрь, Ноябрь
+            return 30
+        elif month_number == 2:
+            if self.__year.is_leap_year():
+                # Високосный Февраль
+                return 29
+            # Невисокосный Февраль
+            return 28
+        return 31
 
 
     def display_calendar(self):
@@ -71,3 +76,9 @@ class Calendar:
 
 c = Calendar(2024)
 c.display_calendar()
+
+from datetime import datetime
+dt = datetime.now()
+#print(dt.year)
+#dt.year = 2028
+#print(dt)
