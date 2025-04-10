@@ -24,13 +24,17 @@ mercedes.move()
 print(mercedes)
 
 
+# class Child(Parent)
+# class Дочерний(Родительский)
 class Truck(Car):
 
     # __init__ унаследован!
     # move унаследован!
 
     def __str__(self):
-        return "Грузовик уехал на " + str(self._x) + " километров и молодец"
+        hours = super().__str__().split()[-2:]
+        print(hours)
+        return "Грузовик уехал на " + str(self._x) + " километров и молодец за " + ' '.join(hours)
 
 man = Truck(8)
 man.move(20)
