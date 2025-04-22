@@ -34,3 +34,12 @@ UPDATE group411 SET is_online=null WHERE surname='Вафин' or surname='Джи
 
 select surname, first_name, fathername, is_online from group411 order by surname;
 select surname, first_name, fathername, is_online from group411 order by first_name;
+
+-- Переименование колонок "на лету" для удобства отображения
+
+select surname, first_name, fathername, is_online o, row_number r, comp c from group411 order by surname;
+
+-- Куда добавлять WHERE? после from, но перед ORDER BY
+
+select surname, first_name, fathername, is_online o, row_number r, comp c from group411 where row_number=2 order by surname;
+select surname, first_name, fathername, is_online o, row_number r, comp c from group411 where comp=4 order by surname;
