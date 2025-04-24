@@ -12,7 +12,7 @@ def get_raw_data():
 
     # Прочитать
 
-    cursor.execute('SELECT first_name, row_number, comp FROM group411')  # ; не обязательна в отличие от консоли!
+    cursor.execute('SELECT first_name, row_number, comp FROM group411 WHERE NOT comp IS NULL')  # ; не обязательна в отличие от консоли!
     # Достать сразу все данные из запроса
     data = cursor.fetchall()
 
@@ -21,17 +21,23 @@ def get_raw_data():
     conn.close()
     return data
 
+# [('Софья', 2, 4), 
+# ('Ульяна', 3, 4), 
+# ('Рустам', 2, 1), 
+# ('Артур', 1, 3), 
+# ('Константин', 3, 2), 
+# ('Андрей', 1, 2)]
+
 def understand(data):
     max_name = 10
     print(data)
-    students = [[None, None, None, None],
-                [None, None, None, None],
-                [None, None, None, None],
-                [None, None, None, None]]
+    students = [[None, None, None, None],  # 0 - 4 парта
+                [None, None, None, None],  # 1 - 3 парта
+                [None, None, None, None],  # 2 - 2 парта
+                [None, None, None, None]]  # 3 - 1 парта (перед учителем)
     for s in data:
         name, row, comp = s
-        if row:
-            students[4 - row][comp - 1] = name
+        students[row - 1][comp - 1] = name
 
     return students, max_name
 
